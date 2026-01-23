@@ -140,9 +140,9 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 
 ## 📚 7. Documentation & Final Polish
 
-### Issue #23: Smart Contract NatSpec
-- [ ] Add `@notice`, `@dev`, `@param`, and `@return` tags to all contract functions.
-- [ ] Generate documentation using `hardhat-dodoc` or similar.
+### Issue #23: Simple Inline Comments
+- [ ] Add clear, single-line comments explaining logic for all contract functions.
+- [ ] Ensure state variables have brief descriptive comments.
 
 ### Issue #24: Deployment Scripts & Task Runner
 - [ ] Write Hardhat Ignition or standard scripts for multi-chain deployment.
@@ -159,3 +159,4 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 - Keep the **Payroll Engine** simple: it only moves funds from the Vault.
 - Always check for **zero-address** inputs in contracts.
 - Use **modular commits**: `feat(vault): add multi-sig storage`, `fix(ui): sidebar spacing on mobile`.
+- Use **single-line comments** for code logic only.
