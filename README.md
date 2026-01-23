@@ -1,181 +1,124 @@
-# 👩‍💻 SheBuilds
+# TreaSure
 
-**Proof-of-Skill NFTs for Women Builders**
+On-chain treasury infrastructure for African SMEs, startups, and remote teams.
 
-Empowering women in Web3 through verifiable, on-chain credentials that showcase skills, achievements, and growth.
+This project provides a secure stablecoin vault for businesses to store revenue transparently, and a FX-safe payroll system that allows companies to pay workers and freelancers reliably without exposure to local currency volatility.
 
----
+The system is modular, with two core products exposed through a single dashboard.
 
-## 🎯 Overview
+✨ Core Features
 
-SheBuilds is a blockchain-based platform that issues NFT credentials representing:
-- **Skills Learned** - Verified completion of courses, workshops, and training
-- **Projects Completed** - Portfolio of built applications and contributions
-- **Mentorship Participation** - Active engagement in mentorship programs
+1️⃣ Merchant Stablecoin Vaults
+A secure, transparent vault system that allows businesses to hold and manage revenue in stablecoins.
 
-These NFTs serve as a **recruiter-friendly**, **non-financial** proof-of-skill system that helps women builders stand out in the Web3 ecosystem.
+**Who it’s for**
+- SMEs
+- Online businesses
+- Crypto-native merchants
+- Market sellers accepting USDT / USDC
 
-## ✨ Why SheBuilds?
+**Problems solved**
+- Unsafe custody of business funds
+- Over-reliance on banks or single custodians
+- Lack of transparency in shared finances
 
-### 🌟 Diversity + Web3
-- Promotes diversity and inclusion in blockchain development
-- Creates a supportive ecosystem for women builders
-- Bridges the gender gap in Web3
+**Features**
+- Stablecoin vaults (USDC / USDT)
+- Multi-signature access control
+- Proof-of-reserves dashboard
+- Role-based permissions (owners, operators, auditors)
+- Optional DAO / governance layer for shared decision-making
 
-### 💼 Recruiter-Friendly
-- Verifiable on-chain credentials
-- Portfolio showcase integrated with NFTs
-- Skills taxonomy aligned with industry standards
-- Easy verification for hiring managers
+**Value**
+- Protect business funds with transparent, programmable custody.
 
-### 🎓 Non-Financial Focus
-- NFTs represent achievements, not speculation
-- Soulbound tokens (non-transferable) option
-- Focus on learning and growth, not trading
+2️⃣ FX-Safe Payroll for Remote Workers
+A payroll module built on top of the vault system that enables predictable, borderless payments.
 
-## 🏗️ Project Structure
+**Who it’s for**
+- Startups
+- Remote-first companies
+- DAOs
+- Freelancers & contractors
 
-```
-shebuilds/
-├── frontend/          # Next.js web application
-├── smartcontract/     # Solidity NFT contracts (Hardhat)
-├── docs/              # Documentation and guides
-└── README.md          # This file
-```
+**Problems solved**
+- FX volatility in salary payments
+- Delayed or failed international transfers
+- No verifiable proof of payment
 
-## 🎨 Key Features
+**Features**
+- Stablecoin-based payroll
+- Scheduled or recurring payouts
+- On-chain proof of salary payments
+- Payroll history & payslip generation
+- Optional off-ramps to local bank accounts
 
-### For Women Builders 👩‍💻
-- **Skill NFTs**: Earn NFTs for completing courses and certifications
-- **Project NFTs**: Showcase completed projects with metadata
-- **Mentorship Badges**: Recognition for mentorship participation
-- **Portfolio Dashboard**: Display all achievements in one place
-- **Shareable Profiles**: Public profile pages for recruiters
+**Value**
+- Pay teams globally with stable value and verifiable records.
 
-### For Mentors & Organizations 🏫
-- **Issue Credentials**: Mint NFTs for course/workshop completion
-- **Verify Skills**: On-chain verification of achievements
-- **Track Progress**: Monitor mentee growth and engagement
-- **Analytics Dashboard**: Insights into program effectiveness
+🧱 Architecture Overview
+- **Vault Contracts** – secure storage of stablecoins
+- **Multi-Sig Layer** – shared control and approvals
+- **Payroll Engine** – scheduled & streaming payments
+- **Frontend Dashboard** – vault management & payroll operations
+- **Off-Ramp Integrations** – optional local currency withdrawals
 
-### For Recruiters 💼
-- **Verify Credentials**: Instant on-chain verification
-- **Browse Talent**: Discover women builders by skills
-- **Filter by Skills**: Search by specific technologies
-- **View Portfolios**: See projects and achievements
+🛠 Tech Stack (example)
+- **Smart Contracts**: Solidity
+- **Chain**: Base / Celo / Optimism
+- **Frontend**: React / Next.js
+- **Wallets**: WalletConnect
+- **Indexing**: The Graph / custom indexer
 
-## 🚀 Getting Started
+🚀 Vision
+To become the default on-chain treasury layer for African businesses and globally distributed teams.
 
-### Prerequisites
-- Node.js 18+
-- npm or yarn
-- MetaMask or compatible Web3 wallet
-- Hardhat for smart contract development
+3️⃣ Frontend UX Structure (Two Tabs, Clean Separation)
 
-### Installation
+**Dashboard Layout**
+Top-level navigation: `[ Vaults ] [ Payroll ]`
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd shebuilds
+🟢 **Tab 1: Merchant Stablecoin Vaults**
 
-# Install frontend dependencies
-cd frontend
-npm install
+**Sections**
+- Vault balance overview
+- Proof-of-reserves visualization
+- Signers & permissions
+- Transaction history
+- Governance / approvals
 
-# Install smart contract dependencies
-cd ../smartcontract
-npm install
-```
+**Primary actions**
+- Deposit stablecoins
+- Approve withdrawals
+- Add/remove signers
+- View audit trail
 
-### Development
+**Mental model**
+- “This is my business vault.”
 
-```bash
-# Compile smart contracts (from smartcontract directory)
-npx hardhat compile
+🔵 **Tab 2: FX-Safe Payroll**
 
-# Run local blockchain node
-npx hardhat node
+**Sections**
+- Team members / recipients
+- Payroll schedule
+- Upcoming payouts
+- Past payroll history
+- Proof-of-payment links
 
-# Deploy contracts to local network
-npx hardhat run scripts/deploy.ts --network localhost
+**Primary actions**
+- Add worker
+- Set salary (weekly / monthly / streaming)
+- Execute or automate payroll
+- Generate payslip / proof
 
-# Run frontend (from frontend directory)
-npm run dev
-```
+**Mental model**
+- “This is how I pay people.”
 
-## 🎨 Tech Stack
+**UX rule (important)**
+- Funds always originate from the Vault
+- Payroll only moves funds, never stores them separately
 
-### Frontend
-- **Framework**: Next.js 14+ (React)
-- **Styling**: CSS (modern, responsive design)
-- **State Management**: React Context/Hooks
-- **Web3 Integration**: ethers.js or wagmi
-- **Wallet Connection**: RainbowKit or Web3Modal
-- **NFT Display**: NFT.storage or IPFS
-
-### Blockchain Backend
-- **Smart Contracts**: Solidity (ERC-721 or ERC-1155)
-- **Development Framework**: Hardhat
-- **Testing**: Hardhat + Chai
-- **Network**: Base, Polygon, or Ethereum
-- **Metadata Storage**: IPFS (NFT.storage or Pinata)
-- **Standards**: ERC-721, ERC-5192 (Soulbound)
-
-## 🎯 NFT Types
-
-### 1. Skill NFTs 🎓
-- **Metadata**: Skill name, level, issuer, date earned
-- **Visual**: Dynamic SVG based on skill category
-- **Attributes**: Technology, proficiency level, verification
-
-### 2. Project NFTs 🚀
-- **Metadata**: Project name, description, tech stack, GitHub link
-- **Visual**: Project screenshot or custom artwork
-- **Attributes**: Technologies used, completion date, team size
-
-### 3. Mentorship Badges 🤝
-- **Metadata**: Program name, duration, role (mentor/mentee)
-- **Visual**: Badge design with program branding
-- **Attributes**: Hours contributed, impact metrics
-
-## 🔒 Soulbound Tokens
-
-Optional implementation of **ERC-5192** for non-transferable NFTs:
-- Prevents trading/selling of credentials
-- Maintains authenticity and trust
-- Ensures achievements stay with the earner
-
-## 🎯 Roadmap
-
-- [ ] Project scaffolding
-- [ ] Smart contract development (ERC-721 + Soulbound)
-- [ ] IPFS metadata storage integration
-- [ ] Frontend UI/UX design
-- [ ] Issuer dashboard for organizations
-- [ ] Builder profile pages
-- [ ] Recruiter search interface
-- [ ] Mobile responsiveness
-- [ ] Testnet deployment
-- [ ] Mainnet launch
-
-## 💡 Future Features
-
-- **Skill Verification**: Peer endorsements and reviews
-- **Learning Paths**: Guided skill progression
-- **Job Board Integration**: Connect builders with opportunities
-- **Community Features**: Forums, events, networking
-- **Analytics**: Personal growth tracking
-- **Multi-chain Support**: Deploy across multiple networks
-
-## 📝 License
-
-TBD
-
-## 🤝 Contributing
-
-We welcome contributions! This project is built by women, for women, but allies are welcome to contribute.
-
----
-
-**SheBuilds** - Empowering Women Builders, One NFT at a Time 👩‍💻✨
+This keeps the system:
+- Simple
+- Auditable
+- Trustable
