@@ -13,7 +13,7 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 
 ### Issue #2: Web3 Connectivity Setup (Wagmi + Reown)
 - [ ] Install and configure `wagmi`, `viem`, and `@reown/appkit`.
-- [ ] Create `config/wagmi.ts` for Base Sepolia and Celo Alfajores networks.
+- [ ] Create `config/wagmi.ts` for Base Mainnet
 - [ ] Implement `context/Web3Provider.tsx` to wrap the application.
 
 ### Issue #3: Environment Variable Configuration
@@ -26,14 +26,14 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 ## 🔐 2. Smart Contract Development (Solidity)
 
 ### Issue #4: TreasuryVault Interface & Storage
-- [ ] Define `ITreasuryVault` interface.
-- [ ] Implement storage structures for Multi-sig signers and approval thresholds.
-- [ ] Add basic `Ownable` and `AccessControl` inheritance.
+- [x] Define `ITreasuryVault` interface.
+- [x] Implement storage structures for Multi-sig signers and approval thresholds.
+- [x] Add basic `Ownable` and `AccessControl` inheritance.
 
 ### Issue #5: ERC-4626 implementation
-- [ ] Inherit and implement OpenZeppelin's ERC-4626 for the vault.
-- [ ] Customize `deposit` and `mint` to support Merchant-specific metadata.
-- [ ] Add `totalAssets` logic to reflect underlying stablecoin balances (USDC/USDT).
+- [x] Inherit and implement OpenZeppelin's ERC-4626 for the vault.
+- [x] Customize `deposit` and `mint` to support Merchant-specific metadata.
+- [x] Add `totalAssets` logic to reflect underlying stablecoin balances (USDC/USDT).
 
 ### Issue #6: Multi-Signature Approval Logic
 - [ ] Create internal mapping to track withdrawal requests.
