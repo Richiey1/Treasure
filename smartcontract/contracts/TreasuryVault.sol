@@ -22,6 +22,15 @@ contract TreasuryVault is ERC4626, Ownable, AccessControl, ReentrancyGuard, ITre
     mapping(uint256 => Transaction) public transactions;
     mapping(uint256 => mapping(address => bool)) public isApproved; // txId => signer => approved
 
+    // Withdrawal Requests
+    uint256 public withdrawalRequestCount;
+    mapping(uint256 => Transaction) public withdrawalRequests;
+    mapping(uint256 => mapping(address => bool)) public withdrawalApprovals;
+
+    event WithdrawalRequested(uint256 indexed requestId, address indexed recipient, uint256 amount);
+    event WithdrawalApproved(uint256 indexed requestId, address indexed approver);
+    event WithdrawalExecuted(uint256 indexed requestId, address indexed recipient, uint256 amount);
+
     constructor(
         IERC20 _asset, 
         string memory _name, 
@@ -134,6 +143,64 @@ contract TreasuryVault is ERC4626, Ownable, AccessControl, ReentrancyGuard, ITre
         require(success, "Transaction execution failed");
 
         emit TransactionExecuted(_txId, msg.sender);
+    }
+
+    // --- Withdrawal Multi-sig Logic ---
+
+    function requestWithdrawal(address receiver, uint256 amount) external onlyRole(SIGNER_ROLE) returns (uint256) {
+        require(receiver != address(0), "Invalid receiver");
+        require(amount > 0, "Invalid amount");
+        require(totalAssets() >= amount, "Insufficient funds");
+
+        uint256 requestId = withdrawalRequestCount;
+        withdrawalRequests[requestId] = Transaction({
+            to: receiver,
+            value: amount,
+            data: "",
+            executed: false,
+            approvalCount: 0
+        });
+
+        withdrawalRequestCount++;
+        emit WithdrawalRequested(requestId, receiver, amount);
+
+        // Auto-approve by requester
+        _approveWithdrawal(requestId, msg.sender);
+
+        return requestId;
+    }
+
+    function approveWithdrawal(uint256 requestId) external onlyRole(SIGNER_ROLE) {
+        _approveWithdrawal(requestId, msg.sender);
+    }
+
+    function _approveWithdrawal(uint256 requestId, address approver) internal {
+        Transaction storage request = withdrawalRequests[requestId];
+        require(!request.executed, "Withdrawal already executed");
+        require(!withdrawalApprovals[requestId][approver], "Already approved");
+
+        withdrawalApprovals[requestId][approver] = true;
+        request.approvalCount++;
+
+        emit WithdrawalApproved(requestId, approver);
+
+        if (request.approvalCount >= threshold) {
+            executeWithdrawal(requestId);
+        }
+    }
+
+    function executeWithdrawal(uint256 requestId) public nonReentrant {
+        Transaction storage request = withdrawalRequests[requestId];
+        require(!request.executed, "Withdrawal already executed");
+        require(request.approvalCount >= threshold, "Threshold not met");
+        require(totalAssets() >= request.value, "Insufficient funds");
+
+        request.executed = true;
+        
+        // Transfer assets using ERC20 transfer from the vault
+        IERC20(asset()).transfer(request.to, request.value);
+
+        emit WithdrawalExecuted(requestId, request.to, request.value);
     }
 
     // --- ERC4626 Overrides (Metadata Support) ---
