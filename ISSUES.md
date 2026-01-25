@@ -36,10 +36,10 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 - [x] Add `totalAssets` logic to reflect underlying stablecoin balances (USDC/USDT).
 
 ### Issue #6: Multi-Signature Approval Logic
-- [ ] Create internal mapping to track withdrawal requests.
-- [ ] Implement `requestWithdrawal(address receiver, uint256 amount)`.
-- [ ] Implement `approveWithdrawal(uint256 requestId)` for authorized signers.
-- [ ] Implement `executeWithdrawal(uint256 requestId)` once threshold is met.
+- [x] Create internal mapping to track withdrawal requests.
+- [x] Implement `requestWithdrawal(address receiver, uint256 amount)`.
+- [x] Implement `approveWithdrawal(uint256 requestId)` for authorized signers.
+- [x] Implement `executeWithdrawal(uint256 requestId)` once threshold is met.
 
 ### Issue #7: PayrollEngine Core Logic
 - [ ] Implement `addEmployee(address wallet, uint256 salary, uint256 interval)`.
