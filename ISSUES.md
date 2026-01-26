@@ -42,10 +42,10 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 - [x] Implement `executeWithdrawal(uint256 requestId)` once threshold is met.
 
 ### Issue #7: PayrollEngine Core Logic
-- [ ] Implement `addEmployee(address wallet, uint256 salary, uint256 interval)`.
-- [ ] Implement `updateEmployee(address wallet, uint256 newSalary)`.
-- [ ] Implement `removeEmployee(address wallet)`.
-- [ ] Add state mapping to track the last payment timestamp for each worker.
+- [x] Implement `addEmployee(address wallet, uint256 salary, uint256 interval)`.
+- [x] Implement `updateEmployee(address wallet, uint256 newSalary)`.
+- [x] Implement `removeEmployee(address wallet)`.
+- [x] Add state mapping to track the last payment timestamp for each worker.
 
 ### Issue #8: Payroll Execution Logic
 - [ ] Implement `executePayroll(address[] workers)` function.
