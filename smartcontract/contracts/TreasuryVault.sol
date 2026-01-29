@@ -11,6 +11,7 @@ contract TreasuryVault is ERC4626, Ownable, AccessControl, ReentrancyGuard, ITre
     
     // Roles
     bytes32 public constant SIGNER_ROLE = keccak256("SIGNER_ROLE");
+    bytes32 public constant PAYROLL_ROLE = keccak256("PAYROLL_ROLE");
 
     // Storage
     uint256 public threshold;
@@ -201,6 +202,17 @@ contract TreasuryVault is ERC4626, Ownable, AccessControl, ReentrancyGuard, ITre
         IERC20(asset()).transfer(request.to, request.value);
 
         emit WithdrawalExecuted(requestId, request.to, request.value);
+    }
+
+    // --- Payroll Module Logic ---
+
+    function executePayrollTransfer(address _to, uint256 _amount) external onlyRole(PAYROLL_ROLE) nonReentrant {
+        require(_to != address(0), "Invalid recipient");
+        require(_amount > 0, "Invalid amount");
+        require(totalAssets() >= _amount, "Insufficient vault balance");
+
+        IERC20(asset()).transfer(_to, _amount);
+        emit PayrollTransferExecuted(_to, _amount);
     }
 
     // --- ERC4626 Overrides (Metadata Support) ---
