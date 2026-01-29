@@ -26,6 +26,7 @@ interface ITreasuryVault is IERC4626 {
     event TransactionProposed(uint256 indexed txId, address indexed proposer, address to, uint256 value, bytes data);
     event TransactionApproved(uint256 indexed txId, address indexed approver);
     event TransactionExecuted(uint256 indexed txId, address indexed executor);
+    event PayrollTransferExecuted(address indexed to, uint256 amount);
 
     // Functions
     function addSigner(address _signer, string memory _name) external;
@@ -36,6 +37,8 @@ interface ITreasuryVault is IERC4626 {
     function approveTransaction(uint256 _txId) external;
     function executeTransaction(uint256 _txId) external payable;
     
+    function executePayrollTransfer(address _to, uint256 _amount) external;
+
     function isSigner(address _account) external view returns (bool);
     function getThreshold() external view returns (uint256);
 }
