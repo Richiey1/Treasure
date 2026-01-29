@@ -72,6 +72,28 @@ contract PayrollEngine is Ownable, ReentrancyGuard {
         emit EmployeeRemoved(_wallet);
     }
 
+    /**
+     * @dev Executes payroll for a batch of workers.
+     * Pulls funds directly from the linked TreasuryVault.
+     */
+    function executePayroll(address[] calldata workers) external nonReentrant {
+        for (uint256 i = 0; i < workers.length; i++) {
+            address worker = workers[i];
+            Employee storage emp = employees[worker];
+
+            require(emp.isActive, "Employee not active");
+            require(block.timestamp >= emp.lastPaid + emp.interval, "Payment interval not reached");
+
+            uint256 amountToPay = emp.salary;
+            emp.lastPaid = block.timestamp;
+
+            // Trigger transfer from vault
+            treasuryVault.executePayrollTransfer(worker, amountToPay);
+
+            emit PayrollExecuted(worker, amountToPay, block.timestamp);
+        }
+    }
+
     function getEmployee(address _wallet) external view returns (Employee memory) {
         return employees[_wallet];
     }
