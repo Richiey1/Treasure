@@ -48,10 +48,10 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 - [x] Add state mapping to track the last payment timestamp for each worker.
 
 ### Issue #8: Payroll Execution Logic
-- [ ] Implement `executePayroll(address[] workers)` function.
-- [ ] Ensure funds are pulled directly from the linked `TreasuryVault`.
-- [ ] Add validation: Ensure vault has sufficient balance before transfer.
-- [ ] Emit `PayrollPaid` events for each successful transaction.
+- [x] Implement `executePayroll(address[] workers)` function.
+- [x] Ensure funds are pulled directly from the linked `TreasuryVault`.
+- [x] Add validation: Ensure vault has sufficient balance before transfer.
+- [x] Emit `PayrollPaid` events for each successful transaction.
 
 ### Issue #9: Vault Factory Contract
 - [ ] Implement `VaultFactory.sol` to deploy new `TreasuryVault` instances.
