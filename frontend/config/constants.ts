@@ -48,4 +48,52 @@ export const BREAKPOINTS = {
   wide: '1280px',
 }
 
+/**
+ * Smart Contract Addresses
+ * These should be populated from environment variables
+ */
+export const CONTRACT_ADDRESSES = {
+  treasuryVault: (process.env.NEXT_PUBLIC_TREASURY_VAULT_ADDRESS || '') as `0x${string}`,
+  payrollEngine: (process.env.NEXT_PUBLIC_PAYROLL_ENGINE_ADDRESS || '') as `0x${string}`,
+  vaultFactory: (process.env.NEXT_PUBLIC_VAULT_FACTORY_ADDRESS || '') as `0x${string}`,
+}
+
+/**
+ * Network Configuration
+ */
+export const NETWORKS = {
+  base: {
+    id: 8453,
+    name: 'Base Mainnet',
+    rpcUrl: process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org',
+  },
+  baseSepolia: {
+    id: 84532,
+    name: 'Base Sepolia Testnet',
+    rpcUrl: process.env.NEXT_PUBLIC_BASE_SEPOLIA_RPC_URL || 'https://sepolia.base.org',
+  },
+}
+
+/**
+ * Transaction Settings
+ */
+export const TX_SETTINGS = {
+  gasLimitMultiplier: 1.2, // Add 20% to estimated gas
+  confirmationBlocks: 2, // Wait for 2 blocks confirmation
+  maxRetries: 3,
+}
+
+/**
+ * API Configuration
+ */
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'
+
+/**
+ * Feature Flags
+ */
+export const FEATURE_FLAGS = {
+  enableTestnet: process.env.NEXT_PUBLIC_ENABLE_TESTNET === 'true',
+  enableAnalytics: process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true',
+}
+
 export default THEME
