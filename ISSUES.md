@@ -7,19 +7,19 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 ## 🏗️ 1. Project Infrastructure & Setup
 
 ### Issue #1: Frontend Framework & Tailwind Setup
-- [ ] Initialize Next.js 14/15 with App Router and TypeScript.
-- [ ] Configure Tailwind CSS v3/v4 with the project color palette (Deep Blue, Mint Green, Slate).
-- [ ] Set up basic folder structure: `components/`, `hooks/`, `context/`, `lib/`, `types/`.
+- [x] Initialize Next.js 14/15 with App Router and TypeScript.
+- [x] Configure Tailwind CSS v3/v4 with the project color palette (Deep Blue, Mint Green, Slate).
+- [x] Set up basic folder structure: `components/`, `hooks/`, `context/`, `lib/`, `types/`.
 
 ### Issue #2: Web3 Connectivity Setup (Wagmi + Reown)
-- [ ] Install and configure `wagmi`, `viem`, and `@reown/appkit`.
-- [ ] Create `config/wagmi.ts` for Base Mainnet
-- [ ] Implement `context/Web3Provider.tsx` to wrap the application.
+- [x] Install and configure `wagmi`, `viem`, and `@reown/appkit`.
+- [x] Create `config/wagmi.ts` for Base Mainnet
+- [x] Implement `context/Web3Provider.tsx` to wrap the application.
 
 ### Issue #3: Environment Variable Configuration
-- [ ] Complete `.env.local` for frontend (Project IDs, RPC URLs).
-- [ ] Complete `.env` for smart contracts (Private Key, API Keys).
-- [ ] Create a `config/constants.ts` file to store contract addresses and common IDs.
+- [x] Complete `.env.local` for frontend (Project IDs, RPC URLs).
+- [x] Complete `.env` for smart contracts (Private Key, API Keys).
+- [x] Create a `config/constants.ts` file to store contract addresses and common IDs.
 
 ---
 
