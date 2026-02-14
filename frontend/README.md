@@ -1,6 +1,6 @@
-# 🎓 SheBuilds Frontend
+# 💰 TreaSure Frontend
 
-Web application for the SheBuilds proof-of-skill NFT platform.
+On-chain treasury infrastructure for African SMEs, startups, and remote teams.
 
 ## 🚀 Getting Started
 
@@ -32,33 +32,26 @@ npm start
 
 ## 🎨 Features
 
-### For Builders 👩‍💻
-- **Profile Dashboard**: View all earned credentials
-- **Skill Showcase**: Display skills with visual badges
-- **Project Portfolio**: Showcase completed projects
-- **Public Profile**: Shareable profile URL for recruiters
-- **Wallet Connection**: Connect with MetaMask
+### Merchant Stablecoin Vaults 🏦
+- **Secure Vaults**: Hold and manage business revenue in stablecoins
+- **Multi-Signature Control**: Shared control and approvals for security
+- **Proof-of-Reserves**: Transparent verification of vault balances
+- **Role-Based Permissions**: Owners, operators, and auditors
 
-### For Issuers 🏫
-- **Credential Minting**: Issue NFT credentials to builders
-- **Batch Operations**: Mint multiple credentials at once
-- **Template Management**: Create reusable credential templates
-- **Analytics**: Track issued credentials and recipients
-
-### For Recruiters 💼
-- **Discover Talent**: Browse women builders by skills
-- **Verify Credentials**: On-chain verification of achievements
-- **Filter & Search**: Find builders with specific skills
-- **View Portfolios**: See projects and credentials
+### FX-Safe Payroll 💸
+- **Stablecoin Payroll**: Pay teams globally without FX volatility
+- **Scheduled Payouts**: Weekly, monthly, or streaming payments
+- **On-Chain Proof**: Verifiable payment history on-chain
+- **Payslip Generation**: Export proof of payment
 
 ## 🏗️ Tech Stack
 
-- **Framework**: Next.js 14+ (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
-- **Styling**: CSS (custom design system)
-- **Web3**: ethers.js or wagmi
-- **Wallet**: RainbowKit or Web3Modal
-- **State**: React Context API
+- **Styling**: Tailwind CSS
+- **Web3**: wagmi + viem
+- **Chain**: Base Mainnet
+- **Wallet**: WalletConnect / RainbowKit
 
 ## 📁 Project Structure
 
@@ -67,25 +60,26 @@ frontend/
 ├── app/                    # Next.js app directory
 │   ├── layout.tsx         # Root layout
 │   ├── page.tsx           # Landing page
-│   ├── profile/           # Builder profiles
-│   ├── issuer/            # Issuer dashboard
-│   └── discover/          # Recruiter discovery
+│   ├── vaults/            # Vault management pages
+│   └── payroll/           # Payroll pages
 ├── components/            # Reusable components
-│   ├── Credential/        # NFT credential display
-│   ├── WalletConnect/     # Wallet connection
-│   └── SkillBadge/        # Skill badges
+│   ├── ui/                # Base UI components
+│   ├── vault/             # Vault-specific components
+│   └── payroll/           # Payroll-specific components
+├── hooks/                 # Custom React hooks
+├── context/               # React Context providers
 ├── lib/                   # Utilities
-│   ├── contracts/         # Contract ABIs and addresses
-│   ├── web3/              # Web3 utilities
-│   └── ipfs/              # IPFS helpers
-└── public/                # Static assets
+│   ├── wagmi.ts           # Wagmi configuration
+│   └── contracts/         # Contract ABIs
+├── config/                # App configuration
+└── types/                 # TypeScript types
 ```
 
 ## 🔗 Connecting to Smart Contracts
 
-1. Deploy the SheBuilds contract
-2. Update contract address in `lib/contracts/addresses.ts`
-3. Connect MetaMask to the network
+1. Deploy the TreasuryVault and PayrollEngine contracts
+2. Update contract addresses in `config/constants.ts`
+3. Connect MetaMask to Base network
 4. Start the frontend
 
 ## 📝 Environment Variables
@@ -93,18 +87,17 @@ frontend/
 Create a `.env.local` file:
 
 ```env
-NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address_here
-NEXT_PUBLIC_CHAIN_ID=1337
-NEXT_PUBLIC_NFT_STORAGE_KEY=your_nft_storage_key
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your_project_id
+NEXT_PUBLIC_TREASURY_VAULT_ADDRESS=your_vault_address
+NEXT_PUBLIC_PAYROLL_ENGINE_ADDRESS=your_payroll_address
+NEXT_PUBLIC_CHAIN_ID=8453
 ```
 
 ## 🎯 Next Steps
 
-- [ ] Install Web3 dependencies
+- [ ] Install Web3 dependencies (wagmi, viem)
 - [ ] Create wallet connection component
-- [ ] Build builder profile UI
-- [ ] Build issuer dashboard
-- [ ] Build recruiter discovery interface
-- [ ] Integrate IPFS for metadata
-- [ ] Add credential display components
-- [ ] Implement search and filtering
+- [ ] Build vault dashboard UI
+- [ ] Build payroll management UI
+- [ ] Integrate contract interactions
+- [ ] Add transaction notifications
