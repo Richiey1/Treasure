@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Web3Provider } from "@/context/Web3Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TreaSure | On-Chain Treasury for African SMEs",
-  description: "Secure stablecoin vault and FX-safe payroll for businesses and remote teams.",
+  title: "TreaSure - Multi-sig Vault & Payroll",
+  description: "Secure multi-signature vault and payroll management platform",
 };
 
 export default function RootLayout({
@@ -23,9 +24,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950 text-white min-h-screen`}>
-        {children}
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Web3Provider>
+          {children}
+        </Web3Provider>
       </body>
     </html>
   );
