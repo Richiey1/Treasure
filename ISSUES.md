@@ -54,9 +54,10 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 - [x] Emit `PayrollPaid` events for each successful transaction.
 
 ### Issue #9: Vault Factory Contract
-- [ ] Implement `VaultFactory.sol` to deploy new `TreasuryVault` instances.
-- [ ] Create a registry mapping `address owner => address[] vaults`.
-- [ ] Implement `getVaultsByOwner(address owner)` view function.
+- **Status**: ✅ COMPLETED
+- [x] Implement `VaultFactory.sol` to deploy new `TreasuryVault` instances.
+- [x] Create a registry mapping `address owner => address[] vaults`.
+- [x] Implement `getVaultsByOwner(address owner)` view function.
 
 ### Issue #10: Price Feed Integration (Chainlink)
 - [ ] Integrate Chainlink `AggregatorV3Interface` in the vault.
@@ -72,8 +73,9 @@ This document breaks down the TreaSure project into granular tasks. Contributors
 - [ ] Implement a `LayoutWrapper` to maintain consistent design across pages.
 
 ### Issue #12: UI Component Library
-- [ ] Build reusable `Button` component (Primary, Secondary, Outline).
-- [ ] Build `Card` component for data visualization.
+- **Status**: ✅ COMPLETED
+- [x] Build reusable `Button` component (Primary, Secondary, Outline).
+- [x] Build `Card` component for data visualization.
 - [ ] Build `Modal` component for transaction confirmations.
 - [ ] Build `Input` component with validation states.
 
